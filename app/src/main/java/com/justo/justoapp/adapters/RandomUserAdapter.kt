@@ -36,9 +36,6 @@ class RandomUserAdapter(
                 "${randomUser.name.title} ${randomUser.name.first} ${randomUser.name.last}"
             it.genderTextView.text = randomUser.gender
             it.mapImageView.setOnClickListener {
-                onClickListener(RandomUserClick.Detailed(randomUser))
-            }
-            it.mapImageView.setOnClickListener {
                 onClickListener(RandomUserClick.Map(randomUser.location))
             }
             it.mailImageView.setOnClickListener {

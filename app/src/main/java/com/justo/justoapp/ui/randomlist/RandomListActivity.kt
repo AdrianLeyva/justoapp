@@ -43,8 +43,6 @@ class RandomListActivity : AppCompatActivity() {
         val layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         randomUserAdapter = RandomUserAdapter(ArrayList()) {
             when(it) {
-                is RandomUserClick.Detailed -> {
-                }
                 is RandomUserClick.Map -> {
                     val mapIntentUri: Uri?
                     it.location.coordinates.let { c ->
@@ -74,11 +72,9 @@ class RandomListActivity : AppCompatActivity() {
 
     private fun initObservers(activity: RandomListActivity) = with(viewModel) {
         randomUserList.observe(activity) { randomUserList ->
-            randomUserList?.let {
-                randomUserAdapter?.let {
-                    it.list = randomUserList
-                    it.notifyDataSetChanged()
-                }
+            randomUserAdapter?.let {
+                it.list = randomUserList
+                it.notifyDataSetChanged()
             }
         }
         state.observe(activity) {
