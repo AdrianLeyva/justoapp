@@ -18,8 +18,7 @@ object RandomUserRepository {
 
     fun fetchAll(
         pageInfo: PageInfo,
-        onSuccess: (List<RandomUser>, pageInfo: PageInfo) -> Unit,
-        onError: () -> Unit
+        callback: (RandomUserRequestState) -> Unit
     ) {
         val retrofit = ApiUtil.buildRetrofit()
         val service = retrofit.create(RandomUserService::class.java)
@@ -30,14 +29,14 @@ object RandomUserRepository {
                     if (response.isSuccessful) {
                         response.body()?.let {
                             Timber.d("results: ${it.results}")
-                            onSuccess(it.results, it.info)
+                            callback(RandomUserRequestState.Success(it.results, it.info))
                         }
                     }
                 }
 
                 override fun onFailure(call: Call<BaseApi>, t: Throwable) {
                     Timber.d("error: ${t.localizedMessage}")
-                    onError()
+                    callback(RandomUserRequestState.Error())
                 }
             })
     }

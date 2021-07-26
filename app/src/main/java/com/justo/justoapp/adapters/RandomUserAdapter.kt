@@ -10,6 +10,7 @@ import com.justo.justoapp.databinding.RandomUserItemBinding
 import com.justo.justoapp.model.RandomUser
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.random_user_item.view.*
+import kotlin.coroutines.coroutineContext
 
 /**
  * @author adrianleyvasanchez

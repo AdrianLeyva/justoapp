@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">JustoApp</string>
     <string name="random_list_title">Random users</string>
+    <string name="error_message">Something is going wrong</string>
 </resources>
